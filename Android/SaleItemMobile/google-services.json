@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "5019859200",
+    "firebase_url": "https://storecomm-6ddfc.firebaseio.com",
+    "project_id": "storecomm-6ddfc",
+    "storage_bucket": "storecomm-6ddfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:5019859200:android:8c59a89fdbd6dc15",
+        "android_client_info": {
+          "package_name": "SaleItemMobile.SaleItemMobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "5019859200-n0jp6agdsbogk242p2fa3i60qus741et.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ_vm6pNPgyiz_nCgw2Zlu5X9SdbZTUp8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StoreCommModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="StoreCommModelStoreContainer">
+          <EntitySet Name="AuthenticationToken" EntityType="StoreCommModel.Store.AuthenticationToken" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OrderCandidate" EntityType="StoreCommModel.Store.OrderCandidate" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="StoreCommModel.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Reciept" EntityType="StoreCommModel.Store.Reciept" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecieptOrder" EntityType="StoreCommModel.Store.RecieptOrder" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StoreUser" EntityType="StoreCommModel.Store.StoreUser" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Product_Reciept" Association="StoreCommModel.Store.FK_Product_Reciept">
+            <End Role="Reciept" EntitySet="Reciept" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reciept_StoreUser" Association="StoreCommModel.Store.FK_Reciept_StoreUser">
+            <End Role="StoreUser" EntitySet="StoreUser" />
+            <End Role="Reciept" EntitySet="Reciept" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AuthenticationToken">
+          <Key>
+            <PropertyRef Name="TokenID" />
+          </Key>
+          <Property Name="TokenID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FkUserID" Type="int" />
+          <Property Name="Token" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderCandidate">
+          <Key>
+            <PropertyRef Name="OrderCandidateID" />
+          </Key>
+          <Property Name="OrderCandidateID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StoreID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="IsAvailable" Type="bit" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="nvarchar" MaxLength="250" />
+          <Property Name="UpdatedOn" Type="nvarchar" MaxLength="250" />
+          <Property Name="RecieptOrderID" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="500" />
+          <Property Name="AddedOn" Type="nvarchar" MaxLength="150" />
+          <Property Name="UpdatedOn" Type="nvarchar" MaxLength="150" />
+          <Property Name="RecieptID" Type="int" />
+          <Property Name="IsAvailable" Type="bit" />
+          <Property Name="Price" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Reciept">
+          <Key>
+            <PropertyRef Name="RecieptID" />
+          </Key>
+          <Property Name="RecieptID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="StoreID" Type="int" />
+          <Property Name="CreatedOn" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RecieptOrder">
+          <Key>
+            <PropertyRef Name="RecieptOrderID" />
+          </Key>
+          <Property Name="RecieptOrderID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RecieptID" Type="int" />
+          <Property Name="SenderStoreID" Type="int" />
+          <Property Name="OrderTime" Type="nvarchar" MaxLength="500" />
+          <Property Name="ReceiverStoreID" Type="int" />
+          <Property Name="Subtotal" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignedStatus" Type="bit" />
+        </EntityType>
+        <EntityType Name="StoreUser">
+          <Key>
+            <PropertyRef Name="StoreUserID" />
+          </Key>
+          <Property Name="StoreUserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StoreName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Username" Type="nvarchar" MaxLength="250" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeviceID" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DeviceType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Product_Reciept">
+          <End Role="Reciept" Type="StoreCommModel.Store.Reciept" Multiplicity="0..1" />
+          <End Role="Product" Type="StoreCommModel.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reciept">
+              <PropertyRef Name="RecieptID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="RecieptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reciept_StoreUser">
+          <End Role="StoreUser" Type="StoreCommModel.Store.StoreUser" Multiplicity="0..1" />
+          <End Role="Reciept" Type="StoreCommModel.Store.Reciept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreUser">
+              <PropertyRef Name="StoreUserID" />
+            </Principal>
+            <Dependent Role="Reciept">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoreCommModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="StoreCommEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="StoreUsers" EntityType="StoreCommModel.StoreUser" />
+          <EntitySet Name="AuthenticationTokens" EntityType="StoreCommModel.AuthenticationToken" />
+          <EntitySet Name="Products" EntityType="StoreCommModel.Product" />
+          <EntitySet Name="Reciepts" EntityType="StoreCommModel.Reciept" />
+          <AssociationSet Name="FK_Product_Reciept" Association="StoreCommModel.FK_Product_Reciept">
+            <End Role="Reciept" EntitySet="Reciepts" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reciept_StoreUser" Association="StoreCommModel.FK_Reciept_StoreUser">
+            <End Role="StoreUser" EntitySet="StoreUsers" />
+            <End Role="Reciept" EntitySet="Reciepts" />
+          </AssociationSet>
+          <EntitySet Name="RecieptOrders" EntityType="StoreCommModel.RecieptOrder" />
+          <EntitySet Name="OrderCandidates" EntityType="StoreCommModel.OrderCandidate" />
+        </EntityContainer>
+        <EntityType Name="StoreUser">
+          <Key>
+            <PropertyRef Name="StoreUserID" />
+          </Key>
+          <Property Name="StoreUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Username" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="DeviceID" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Reciepts" Relationship="StoreCommModel.FK_Reciept_StoreUser" FromRole="StoreUser" ToRole="Reciept" />
+          <Property Type="String" Name="DeviceType" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AuthenticationToken">
+          <Key>
+            <PropertyRef Name="TokenID" />
+          </Key>
+          <Property Type="Int32" Name="TokenID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="FkUserID" />
+          <Property Type="String" Name="Token" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Type="Int32" Name="ProductID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Quantity" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddedOn" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UpdatedOn" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RecieptID" />
+          <NavigationProperty Name="Reciept" Relationship="StoreCommModel.FK_Product_Reciept" FromRole="Product" ToRole="Reciept" />
+          <Property Type="Boolean" Name="IsAvailable" />
+          <Property Type="String" Name="Price" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Reciept">
+          <Key>
+            <PropertyRef Name="RecieptID" />
+          </Key>
+          <Property Type="Int32" Name="RecieptID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StoreID" />
+          <Property Type="String" Name="CreatedOn" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="StoreCommModel.FK_Product_Reciept" FromRole="Reciept" ToRole="Product" />
+          <NavigationProperty Name="StoreUser" Relationship="StoreCommModel.FK_Reciept_StoreUser" FromRole="Reciept" ToRole="StoreUser" />
+          <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Price" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Product_Reciept">
+          <End Type="StoreCommModel.Reciept" Role="Reciept" Multiplicity="0..1" />
+          <End Type="StoreCommModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reciept">
+              <PropertyRef Name="RecieptID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="RecieptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reciept_StoreUser">
+          <End Type="StoreCommModel.StoreUser" Role="StoreUser" Multiplicity="0..1" />
+          <End Type="StoreCommModel.Reciept" Role="Reciept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreUser">
+              <PropertyRef Name="StoreUserID" />
+            </Principal>
+            <Dependent Role="Reciept">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RecieptOrder">
+          <Key>
+            <PropertyRef Name="RecieptOrderID" />
+          </Key>
+          <Property Type="Int32" Name="RecieptOrderID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RecieptID" />
+          <Property Type="Int32" Name="SenderStoreID" />
+          <Property Type="String" Name="OrderTime" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ReceiverStoreID" />
+          <Property Type="String" Name="Subtotal" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AssignedStatus" />
+        </EntityType>
+        <EntityType Name="OrderCandidate">
+          <Key>
+            <PropertyRef Name="OrderCandidateID" />
+          </Key>
+          <Property Type="Int32" Name="OrderCandidateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="StoreID" />
+          <Property Type="Int32" Name="ProductID" />
+          <Property Type="Boolean" Name="IsAvailable" />
+          <Property Type="String" Name="Price" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CreatedOn" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UpdatedOn" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RecieptOrderID" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoreCommModelStoreContainer" CdmEntityContainer="StoreCommEntities">
+          <EntitySetMapping Name="StoreUsers">
+            <EntityTypeMapping TypeName="StoreCommModel.StoreUser">
+              <MappingFragment StoreEntitySet="StoreUser">
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="StoreUserID" ColumnName="StoreUserID" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthenticationTokens">
+            <EntityTypeMapping TypeName="StoreCommModel.AuthenticationToken">
+              <MappingFragment StoreEntitySet="AuthenticationToken">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="FkUserID" ColumnName="FkUserID" />
+                <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="StoreCommModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="RecieptID" ColumnName="RecieptID" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reciepts">
+            <EntityTypeMapping TypeName="StoreCommModel.Reciept">
+              <MappingFragment StoreEntitySet="Reciept">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RecieptID" ColumnName="RecieptID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecieptOrders">
+            <EntityTypeMapping TypeName="StoreCommModel.RecieptOrder">
+              <MappingFragment StoreEntitySet="RecieptOrder">
+                <ScalarProperty Name="AssignedStatus" ColumnName="AssignedStatus" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="ReceiverStoreID" ColumnName="ReceiverStoreID" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="SenderStoreID" ColumnName="SenderStoreID" />
+                <ScalarProperty Name="RecieptID" ColumnName="RecieptID" />
+                <ScalarProperty Name="RecieptOrderID" ColumnName="RecieptOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderCandidates">
+            <EntityTypeMapping TypeName="StoreCommModel.OrderCandidate">
+              <MappingFragment StoreEntitySet="OrderCandidate">
+                <ScalarProperty Name="RecieptOrderID" ColumnName="RecieptOrderID" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="OrderCandidateID" ColumnName="OrderCandidateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:cardview="http://schemas.android.com/apk/res-auto"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:layout_gravity="center_horizontal"
+  cardview:cardElevation="4dp"
+  cardview:cardCornerRadius="5dp"
+  android:background="@android:color/transparent"
+  android:paddingTop="50dp">
+
+  <FrameLayout
+      android:background="@drawable/card_edge"
+      android:layout_width="4dp"
+      android:layout_height="match_parent"/>
+
+  <LinearLayout
+          android:layout_width="fill_parent"
+          android:layout_height="240dp"
+          android:orientation="vertical"
+          android:padding="8dp">
+    <TextView
+        android:text="Username"
+        android:id="@+id/textView1"
+        style="@style/label_text" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextUserName" />
+    <TextView
+        android:text="Password"
+        android:id="@+id/textViewPwd"
+        style="@style/label_text" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewPassword" />
+    <Button
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogin" />
+  </LinearLayout>
+</android.support.v7.widget.CardView>

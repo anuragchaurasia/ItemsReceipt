@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StoreCommModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="StoreCommEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="StoreUsers" EntityType="StoreCommModel.StoreUser" />
+    <EntitySet Name="AuthenticationTokens" EntityType="StoreCommModel.AuthenticationToken" />
+    <EntitySet Name="Products" EntityType="StoreCommModel.Product" />
+    <EntitySet Name="Reciepts" EntityType="StoreCommModel.Reciept" />
+    <AssociationSet Name="FK_Product_Reciept" Association="StoreCommModel.FK_Product_Reciept">
+      <End Role="Reciept" EntitySet="Reciepts" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reciept_StoreUser" Association="StoreCommModel.FK_Reciept_StoreUser">
+      <End Role="StoreUser" EntitySet="StoreUsers" />
+      <End Role="Reciept" EntitySet="Reciepts" />
+    </AssociationSet>
+    <EntitySet Name="RecieptOrders" EntityType="StoreCommModel.RecieptOrder" />
+    <EntitySet Name="OrderCandidates" EntityType="StoreCommModel.OrderCandidate" />
+  </EntityContainer>
+  <EntityType Name="StoreUser">
+    <Key>
+      <PropertyRef Name="StoreUserID" />
+    </Key>
+    <Property Name="StoreUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StoreName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Username" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Type="String" Name="DeviceID" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Active" />
+    <NavigationProperty Name="Reciepts" Relationship="StoreCommModel.FK_Reciept_StoreUser" FromRole="StoreUser" ToRole="Reciept" />
+    <Property Type="String" Name="DeviceType" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AuthenticationToken">
+    <Key>
+      <PropertyRef Name="TokenID" />
+    </Key>
+    <Property Type="Int32" Name="TokenID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="FkUserID" />
+    <Property Type="String" Name="Token" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Type="Int32" Name="ProductID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Quantity" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AddedOn" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UpdatedOn" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RecieptID" />
+    <NavigationProperty Name="Reciept" Relationship="StoreCommModel.FK_Product_Reciept" FromRole="Product" ToRole="Reciept" />
+    <Property Type="Boolean" Name="IsAvailable" />
+    <Property Type="String" Name="Price" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Reciept">
+    <Key>
+      <PropertyRef Name="RecieptID" />
+    </Key>
+    <Property Type="Int32" Name="RecieptID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="StoreID" />
+    <Property Type="String" Name="CreatedOn" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="StoreCommModel.FK_Product_Reciept" FromRole="Reciept" ToRole="Product" />
+    <NavigationProperty Name="StoreUser" Relationship="StoreCommModel.FK_Reciept_StoreUser" FromRole="Reciept" ToRole="StoreUser" />
+    <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Price" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Product_Reciept">
+    <End Type="StoreCommModel.Reciept" Role="Reciept" Multiplicity="0..1" />
+    <End Type="StoreCommModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reciept">
+        <PropertyRef Name="RecieptID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="RecieptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reciept_StoreUser">
+    <End Type="StoreCommModel.StoreUser" Role="StoreUser" Multiplicity="0..1" />
+    <End Type="StoreCommModel.Reciept" Role="Reciept" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StoreUser">
+        <PropertyRef Name="StoreUserID" />
+      </Principal>
+      <Dependent Role="Reciept">
+        <PropertyRef Name="StoreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RecieptOrder">
+    <Key>
+      <PropertyRef Name="RecieptOrderID" />
+    </Key>
+    <Property Type="Int32" Name="RecieptOrderID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="RecieptID" />
+    <Property Type="Int32" Name="SenderStoreID" />
+    <Property Type="String" Name="OrderTime" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="ReceiverStoreID" />
+    <Property Type="String" Name="Subtotal" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="AssignedStatus" />
+  </EntityType>
+  <EntityType Name="OrderCandidate">
+    <Key>
+      <PropertyRef Name="OrderCandidateID" />
+    </Key>
+    <Property Type="Int32" Name="OrderCandidateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="StoreID" />
+    <Property Type="Int32" Name="ProductID" />
+    <Property Type="Boolean" Name="IsAvailable" />
+    <Property Type="String" Name="Price" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CreatedOn" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="UpdatedOn" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RecieptOrderID" />
+  </EntityType>
+</Schema>

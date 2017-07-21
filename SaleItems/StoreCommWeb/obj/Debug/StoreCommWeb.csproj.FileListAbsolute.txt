@@ -1,0 +1,13 @@
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\StoreCommWeb.dll
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\StoreCommWeb.pdb
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\obj\Debug\StoreCommWeb.dll
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\obj\Debug\StoreCommWeb.pdb
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\obj\Debug\StoreCommWeb.csprojResolveAssemblyReference.cache
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\DataLayer.dll
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\EntityLayer.dll
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\EntityFramework.dll
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\DataLayer.pdb
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\EntityLayer.pdb
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\EntityFramework.xml
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\Newtonsoft.Json.dll
+E:\Live Projects\ItemsReceipt\SaleItems\StoreCommWeb\bin\Newtonsoft.Json.xml

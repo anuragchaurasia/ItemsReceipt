@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StoreCommModelStoreContainer" CdmEntityContainer="StoreCommEntities">
+    <EntitySetMapping Name="StoreUsers">
+      <EntityTypeMapping TypeName="StoreCommModel.StoreUser">
+        <MappingFragment StoreEntitySet="StoreUser">
+          <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="StoreUserID" ColumnName="StoreUserID" />
+          <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AuthenticationTokens">
+      <EntityTypeMapping TypeName="StoreCommModel.AuthenticationToken">
+        <MappingFragment StoreEntitySet="AuthenticationToken">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="FkUserID" ColumnName="FkUserID" />
+          <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="StoreCommModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+          <ScalarProperty Name="RecieptID" ColumnName="RecieptID" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reciepts">
+      <EntityTypeMapping TypeName="StoreCommModel.Reciept">
+        <MappingFragment StoreEntitySet="Reciept">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RecieptID" ColumnName="RecieptID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecieptOrders">
+      <EntityTypeMapping TypeName="StoreCommModel.RecieptOrder">
+        <MappingFragment StoreEntitySet="RecieptOrder">
+          <ScalarProperty Name="AssignedStatus" ColumnName="AssignedStatus" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+          <ScalarProperty Name="ReceiverStoreID" ColumnName="ReceiverStoreID" />
+          <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+          <ScalarProperty Name="SenderStoreID" ColumnName="SenderStoreID" />
+          <ScalarProperty Name="RecieptID" ColumnName="RecieptID" />
+          <ScalarProperty Name="RecieptOrderID" ColumnName="RecieptOrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderCandidates">
+      <EntityTypeMapping TypeName="StoreCommModel.OrderCandidate">
+        <MappingFragment StoreEntitySet="OrderCandidate">
+          <ScalarProperty Name="RecieptOrderID" ColumnName="RecieptOrderID" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+          <ScalarProperty Name="OrderCandidateID" ColumnName="OrderCandidateID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

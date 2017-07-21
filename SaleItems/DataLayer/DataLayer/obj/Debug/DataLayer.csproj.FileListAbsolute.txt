@@ -1,0 +1,10 @@
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\bin\Debug\DataLayer.dll.config
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\bin\Debug\DataLayer.dll
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\bin\Debug\DataLayer.pdb
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\bin\Debug\EntityFramework.dll
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\bin\Debug\EntityLayer.dll
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\bin\Debug\EntityLayer.pdb
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\bin\Debug\EntityFramework.xml
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\obj\Debug\DataLayer.dll
+E:\Live Projects\ItemsReceipt\SaleItems\DataLayer\DataLayer\obj\Debug\DataLayer.pdb

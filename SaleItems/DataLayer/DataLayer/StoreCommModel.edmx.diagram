@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="25d95846c98d4b13a88cee9ad44e034a" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="StoreCommModel.StoreUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreCommModel.AuthenticationToken" Width="1.5" PointX="5.4458160965916775" PointY="26.8697948878956" />
+        <EntityTypeShape EntityType="StoreCommModel.Product" Width="1.5" PointX="7" PointY="0.75" />
+        <EntityTypeShape EntityType="StoreCommModel.Reciept" Width="1.5" PointX="3.625" PointY="1" />
+        <AssociationConnector Association="StoreCommModel.FK_Product_Reciept" />
+        <AssociationConnector Association="StoreCommModel.FK_Reciept_StoreUser" />
+        <EntityTypeShape EntityType="StoreCommModel.RecieptOrder" Width="1.5" PointX="6.875" PointY="3.75" />
+        <EntityTypeShape EntityType="StoreCommModel.OrderCandidate" Width="1.5" PointX="3.625" PointY="3.875" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
